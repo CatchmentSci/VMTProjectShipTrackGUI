@@ -109,9 +109,12 @@ for zi = 1 : z
     A(zi).Nav.totDistEast(bvbt_indx)    = NaN;
     A(zi).Nav.totDistENorth(bvbt_indx)  = NaN;
     gvbt_indx                           = ~isnan(A(zi).Nav.totDistEast);
-    A(zi).Nav.totDistEast(bvbt_indx)    = interp1(A(zi).Sup.ensNo(gvbt_indx),A(zi).Nav.totDistEast(gvbt_indx),A(zi).Sup.ensNo(bvbt_indx));
-    A(zi).Nav.totDistNorth(bvbt_indx)   = interp1(A(zi).Sup.ensNo(gvbt_indx),A(zi).Nav.totDistNorth(gvbt_indx),A(zi).Sup.ensNo(bvbt_indx));
-
+    
+    if ~isempty(bvbt_indx) % ensure only runs when data exists
+        A(zi).Nav.totDistEast(bvbt_indx)    = interp1(A(zi).Sup.ensNo(gvbt_indx),A(zi).Nav.totDistEast(gvbt_indx),A(zi).Sup.ensNo(bvbt_indx));
+        A(zi).Nav.totDistNorth(bvbt_indx)   = interp1(A(zi).Sup.ensNo(gvbt_indx),A(zi).Nav.totDistNorth(gvbt_indx),A(zi).Sup.ensNo(bvbt_indx));
+    end
+    
     % If bad values exist replace them with Bottom Track
     if any(A(zi).Comp.gps_reject_locations)
 

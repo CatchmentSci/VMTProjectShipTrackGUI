@@ -35,6 +35,7 @@ try
     % Possibilities are RioGrande (RG), StreamPro (SP), RiverRay (RR),
     % SonTek M9 (M9), SonTek S5 (S5)
     V.probeType = A(1).Sensor.sensor_type;
+    V.probeType = 'S5'; % Force this
     
     %% Write bed elevation to V struct
     V.eta = eta;
